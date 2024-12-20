@@ -14,7 +14,7 @@ RUN git clone https://github.com/Kytaalok/PARVPO.git
 WORKDIR /app/PARVPO/Lab1
 
 # Скомпилируем программу
-RUN g++ cpu_load.cpp -o cpu_load -fopenmp
+RUN g++ benchmark.cpp -o benchmark -fopenmp
 
 # При запуске контейнера выполняем программу, результат сохраняем на хост
-CMD ["./cpu_load"]
+CMD ["./benchmark"]
