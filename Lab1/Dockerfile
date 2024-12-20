@@ -7,11 +7,7 @@ RUN apk update && apk add --no-cache g++ git
 # Установим рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Склонируем ваш репозиторий с GitHub
-RUN git clone https://github.com/Kytaalok/PARVPO.git
-
-# Перейдём в директорию Lab
-WORKDIR /app/PARVPO/Lab1
+COPY cpu_load.cpp .
 
 # Скомпилируем программу
 RUN g++ cpu_load.cpp -o cpu_load -fopenmp
