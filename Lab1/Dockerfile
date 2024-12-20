@@ -1,20 +1,24 @@
-# Используем базовый образ Alpine
+# Use base Alpine image
 FROM alpine:latest
 
-# Установим необходимые пакеты: g++, git
+# Install necessary packages: g++, git
 RUN apk update && apk add --no-cache g++ git
 
-# Установим рабочую директорию внутри контейнера
+# Set working directory inside the container
 WORKDIR /app
 
-# Склонируем ваш репозиторий с GitHub
+# Clone the repository
 RUN git clone https://github.com/Kytaalok/PARVPO.git .
 
-# Перейдём в директорию Lab
+# List contents to verify cloning
+RUN ls -la /app
+RUN ls -la /app/Lab1
+
+# Change to Lab1 directory
 WORKDIR /app/Lab1
 
-# Скомпилируем программу
+# Compile the program
 RUN g++ benchmark.cpp -o benchmark -fopenmp
 
-# При запуске контейнера выполняем программу, результат сохраняем на хост
+# Execute the program when the container starts
 CMD ["./benchmark"]
