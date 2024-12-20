@@ -8,10 +8,10 @@ RUN apk update && apk add --no-cache g++ git
 WORKDIR /app
 
 # Склонируем ваш репозиторий с GitHub
-RUN git clone https://github.com/Kytaalok/PARVPO.git
+RUN git clone https://github.com/Kytaalok/PARVPO.git .
 
 # Перейдём в директорию Lab
-WORKDIR /app/PARVPO/Lab1
+WORKDIR /app/Lab1
 
 # Скомпилируем программу
 RUN g++ benchmark.cpp -o benchmark -fopenmp
