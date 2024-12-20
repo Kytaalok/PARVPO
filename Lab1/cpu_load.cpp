@@ -63,6 +63,7 @@ int main() {
 
         clock_t end = clock();
         time_spent += (double) (end - begin) / CLOCKS_PER_SEC;
+        printf("Seconds spent: %lf\n", time_spent);
     }
     // printf("Threads: %d\nSeconds spent: %lf\n", t, time_spent / runs_num);
     time_spent = 0;
