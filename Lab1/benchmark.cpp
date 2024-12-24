@@ -39,22 +39,22 @@ int main() {
     //printf("OpenMP: %d;\n======\n", _OPENMP);
     const int runs_num = 20;
 
-    int t = 12;
+    int threads = 12;
     for (int i = 0; i < runs_num; i++) {
 
         for (int i = 0; i < count; i++) {
             array[i] = xorshift32(&random_seed);
         }
 
-        part_size = count / t;
+        part_size = count / threads;
 
         clock_t begin = clock();
 
-        #pragma omp parallel num_threads(t) shared(array, part_size, t) default(none)
+        #pragma omp parallel num_threads(threads) shared(array, part_size, threads) default(none)
         {
             int thread_id = omp_get_thread_num();
             int left = thread_id * part_size;
-            int right = (thread_id == t - 1) ? count - 1 : (left + part_size - 1);
+            int right = (thread_id == threads - 1) ? count - 1 : (left + part_size - 1);
 
             shell_sort(array, left, right);
         }
@@ -63,7 +63,9 @@ int main() {
 
         clock_t end = clock();
         time_spent += (double) (end - begin) / CLOCKS_PER_SEC;
-        printf("Seconds spent: %lf\n", time_spent);
+        int ptr = 1;
+        //printf("Seconds spent: %lf\n", time_spent / ptr);
+        ptr++;
     }
     // printf("Threads: %d\nSeconds spent: %lf\n", t, time_spent / runs_num);
     time_spent = 0;
