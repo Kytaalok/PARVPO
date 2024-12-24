@@ -18,7 +18,7 @@ RUN ls -la /app/Lab1
 WORKDIR /app/Lab1
 
 # Compile the program
-RUN g++ benchmark.cpp -o benchmark -fopenmp
+RUN g++ cpu_load.cpp -o cpu_load -fopenmp
 
 # Execute the program when the container starts
-CMD ["./benchmark"]
+CMD ["./cpu_load"]
