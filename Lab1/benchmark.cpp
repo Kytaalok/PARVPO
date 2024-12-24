@@ -50,7 +50,7 @@ int main() {
 
         clock_t begin = clock();
 
-        #pragma omp parallel num_threads(t) shared(array, count, part_size, t) default(none)
+        #pragma omp parallel num_threads(t) shared(array, part_size, t) default(none)
         {
             int thread_id = omp_get_thread_num();
             int left = thread_id * part_size;
